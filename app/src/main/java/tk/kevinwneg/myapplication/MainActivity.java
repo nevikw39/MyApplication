@@ -23,7 +23,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editTextUsr, editTextPwd;
+    private EditText editTextUsr, editTextPwd;
+    private CookieManager cm;
+    private RequestQueue rq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +33,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         editTextUsr = (EditText) findViewById(R.id.editTextUsr);
         editTextPwd = (EditText) findViewById(R.id.editTextPwd);
+        cm = new CookieManager();
+        CookieHandler.setDefault(cm);
+        rq = Volley.newRequestQueue(this);
     }
 
     public void buttonOnClick(View view) {
         Button button = (Button) view;
         Toast toast = Toast.makeText(this, "學號：" + editTextUsr.getText().toString().trim() + "\n密碼：" + editTextPwd.getText().toString().trim(), Toast.LENGTH_SHORT);
         toast.show();
-        CookieManager cm = new CookieManager();
-        CookieHandler.setDefault(cm);
-        RequestQueue rq = Volley.newRequestQueue(this);
         StringRequest login = new StringRequest(Request.Method.POST, "https://tcfsh.feverpass.life/login", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

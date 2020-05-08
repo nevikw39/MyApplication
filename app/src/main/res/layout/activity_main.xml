@@ -56,7 +56,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="nevikw39" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
